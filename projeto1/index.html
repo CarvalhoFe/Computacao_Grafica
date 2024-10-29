@@ -1,4 +1,4 @@
-<!DOCTYPE <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -6,10 +6,14 @@
     <title>WebGL</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js" defer></script>
+    <script src="carro.js" defer id="script"></script>
 </head>
 <body>
     <canvas id="c"></canvas>
+    <button onclick="loadScript('carro.js')">Carro</button>
+    <button onclick="loadScript('flor.js')">Flor</button>
+    <button onclick="loadScript('palhaco.js')">Palhaço</button>
+
     <script id="vertex-shader-2d" type="notjs">
         attribute vec2 position;
         attribute vec3 color;
@@ -19,8 +23,8 @@
             gl_Position = vec4(position,0.0,1.0);
             vColor = color;
         }
-      </script>
-      <script id="fragment-shader-2d" type="notjs">
+    </script>
+    <script id="fragment-shader-2d" type="notjs">
         precision mediump float;
 
         varying vec3 vColor;        
@@ -28,6 +32,17 @@
         void main() {
             gl_FragColor = vec4(vColor,1.0);
         }
-      </script>
+    </script>
+
+    <script>
+        function loadScript(scriptName) {
+            const oldScript = document.getElementById("script");
+            const newScript = document.createElement("script");
+            newScript.src = scriptName;
+            newScript.id = "script";
+            newScript.defer = true;
+            oldScript.parentNode.replaceChild(newScript, oldScript);
+        }
+    </script>
 </body>
 </html>
