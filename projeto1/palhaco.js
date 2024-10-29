@@ -43,6 +43,34 @@ function main(){
 
   n=30;
   gl.bindBuffer(gl.ARRAY_BUFFER,positionBuffer);
+  setCircleVertices(gl, n, 0.3, 0.5, 0.25);
+  gl.bindBuffer(gl.ARRAY_BUFFER, colorBuffer);
+  setCircleColor(gl,n,[0.0, 0.0, 1.0]);
+  gl.drawArrays(gl.TRIANGLES, 0, 3*n); 
+
+  n=30;
+  gl.bindBuffer(gl.ARRAY_BUFFER,positionBuffer);
+  setCircleVertices(gl, n, 0.3, 0.5, 0.38);
+  gl.bindBuffer(gl.ARRAY_BUFFER, colorBuffer);
+  setCircleColor(gl,n,[0.0, 0.0, 1.0]);
+  gl.drawArrays(gl.TRIANGLES, 0, 3*n);
+
+  n=30;
+  gl.bindBuffer(gl.ARRAY_BUFFER,positionBuffer);
+  setCircleVertices(gl, n, 0.3, -0.5, 0.25);
+  gl.bindBuffer(gl.ARRAY_BUFFER, colorBuffer);
+  setCircleColor(gl,n,[0.0, 0.0, 1.0]);
+  gl.drawArrays(gl.TRIANGLES, 0, 3*n); 
+
+  n=30;
+  gl.bindBuffer(gl.ARRAY_BUFFER,positionBuffer);
+  setCircleVertices(gl, n, 0.3, -0.5, 0.38);
+  gl.bindBuffer(gl.ARRAY_BUFFER, colorBuffer);
+  setCircleColor(gl,n,[0.0, 0.0, 1.0]);
+  gl.drawArrays(gl.TRIANGLES, 0, 3*n);
+
+  n=30;
+  gl.bindBuffer(gl.ARRAY_BUFFER,positionBuffer);
   setCircleVertices(gl, n, 0.5, 0.0, 0.0);
   gl.bindBuffer(gl.ARRAY_BUFFER, colorBuffer);
   setCircleColor(gl,n,[0.65, 0.33, 0.16]);
@@ -135,14 +163,14 @@ function setRectangleVertices(gl, x, y, width, height) {
     
     for(let i = 0; i < n; i++) {
         vertexData.push(...center);
-        vertexData.push(
-            centerX + radius * Math.cos(i * (2 * Math.PI) / n),
-            centerY + radius * Math.sin(i * (2 * Math.PI) / n)
-        );
-        vertexData.push(
-            centerX + radius * Math.cos((i + 1) * (2 * Math.PI) / n),
-            centerY + radius * Math.sin((i + 1) * (2 * Math.PI) / n)
-        );
+        vertexData.push(...[
+            center[0] + radius * Math.cos(i * (2 * Math.PI) / n),
+            center[1] + radius * Math.sin(i * (2 * Math.PI) / n)
+        ]);
+        vertexData.push(...[
+            center[0] + radius * Math.cos((i + 1) * (2 * Math.PI) / n),
+            center[1] + radius * Math.sin((i + 1) * (2 * Math.PI) / n)
+        ]);
     }
     
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexData), gl.STATIC_DRAW);
